@@ -9,7 +9,6 @@ require 'yaml'
 class Pigal < Sinatra::Base
 
   get '/' do
-    @encoded_source_urls = get_json_proxy_urls
     erb :index
   end
 
@@ -18,6 +17,13 @@ class Pigal < Sinatra::Base
 
     jpd = JsonProxyDispatcher.new(get_urls)
     jpd.as_json
+  end
+
+  get '/pigal.js' do
+    content_type 'application/javascript'
+
+    @encoded_source_urls = get_json_proxy_urls
+    erb 'pigal.js'.to_sym
   end
 
   private
