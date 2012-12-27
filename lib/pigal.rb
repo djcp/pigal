@@ -4,6 +4,7 @@ require 'feed-abstract'
 require 'json'
 require './lib/json_proxy_dispatcher'
 require 'cgi'
+require 'yaml'
 
 class Pigal < Sinatra::Base
 
@@ -21,16 +22,17 @@ class Pigal < Sinatra::Base
 
   private
 
+  def config
+    @config || YAML.load_file('./config.yml')
+  end
+
   def get_urls
     [params[:urls]].flatten.compact
   end
 
   def get_json_proxy_urls
     output = ''
-    File.read('./image_source_urls.txt').split(/\n/).each do |url|
-      if url.match(/^\s?#/)
-        next
-      end
+    config['urls'].each do |url|
       output += "urls[]=#{CGI.escape(url)}&"
     end
     output
