@@ -1,0 +1,2 @@
+http://djcp.smugmug.com/hack/feed.mg?Type=gallery&Data=24533581_cCxzNm&format=atom10
+# http://api.flickr.com/services/feeds/photos_public.gne?id=52614599@N00&lang=en-us&format=rss

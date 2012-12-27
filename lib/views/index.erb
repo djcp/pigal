@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pigal</title>
+    <script type="text/javascript" language="javascript" src="/javascripts/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" language="javascript" src="/javascripts/jquery.cycle.lite.js"></script>
+    <script type="text/javascript" language="javascript">
+      var encoded_source_urls = '<%= @encoded_source_urls %>';
+    </script>
+    <script type="text/javascript" language="javascript" src="/javascripts/pigal.js"></script>
+    <style type="text/css">
+      body{
+        margin: 0px;
+      }
+      #image_container div{
+        background: no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="image_container">
+    </div>
+  </body>
+</html>
