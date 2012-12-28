@@ -1,4 +1,4 @@
-class FlickrRss
+class DeviantArtGallery
   def initialize(url)
     @url = url
   end
@@ -6,9 +6,8 @@ class FlickrRss
   def items
     content = open(@url).read
     doc = Nokogiri.parse(content)
-    doc.remove_namespaces!
     output = []
-    doc.xpath('//content').each do|node|
+    doc.search('//media:content[contains(@medium, "image")]').each do|node|
       output << { img_url: node['url'] }
     end
     output

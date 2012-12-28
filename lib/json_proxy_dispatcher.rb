@@ -1,5 +1,6 @@
 require './lib/smug_mug_atom'
 require './lib/flickr_rss'
+require './lib/deviant_art_gallery'
 require './lib/null_strategy'
 
 class JsonProxyDispatcher
@@ -26,6 +27,8 @@ class JsonProxyDispatcher
         SmugMugAtom.new(url)
       elsif url.match /api\.flickr\.com.+rss/
         FlickrRss.new(url)
+      elsif url.match /backend\.deviantart.+gallery/
+        DeviantArtGallery.new(url)
       else
         NullStrategy.new(url)
       end

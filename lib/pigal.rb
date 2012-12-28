@@ -1,10 +1,11 @@
 require 'rubygems'
 require 'sinatra/base'
-require 'feed-abstract'
 require 'json'
 require './lib/json_proxy_dispatcher'
 require 'cgi'
 require 'yaml'
+require 'nokogiri'
+require 'open-uri'
 
 class Pigal < Sinatra::Base
 
