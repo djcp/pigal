@@ -1,31 +1,59 @@
 $(function(){
 
-  var encoded_source_urls = '<%= @encoded_source_urls %>';
+var viewportHeight = $(window).height();
+var viewportWidth = $(window).width();
+var encodedSourceUrls = '<%= @encoded_source_urls %>';
+var transitionSpeed = <%= config['transition_speed'] %>;
+var transition = '<%= config['transition'] %>';
+var timeout = <%= config['timeout'] %>;
+var random = <%= config['random'] %>;
+var reloadWhenFinished = <%= config['reload_when_finished'] %>;
 
-  var viewportHeight = $(window).height();
-  var viewportWidth = $(window).width();
-  $('#image_container').css({
-    width: viewportWidth,
-    height: viewportHeight
+function reloadImages(){
+  // Guess when we should reload
+  var totalSlideTime = (transitionSpeed + timeout) * $('#image_container div').length;
+  setTimeout(function(){
+    window.location.reload();
+  }, totalSlideTime);
+}
+
+function startCycling(){
+  $('#image_container').cycle({
+    fx: transition,
+    timeout: timeout,
+    random: random
   });
+}
 
-  $.ajax({
-    url: '/get_proxied_json?' + encoded_source_urls,
-    dataType: 'json',
-    success: function(data){
-      $(data).each(function(index,element){
-        $('#image_container').append(
-          $('<div />').css({
-            backgroundImage: "url('" + element.img_url +"')",
-            width: viewportWidth,
-            height: viewportHeight
-          })
-        );
-      });
-    },
-    complete: function(){
-      $('#image_container').cycle('fade')
+function insertImages(data){
+  $(data).each(function(index,element){
+    $('#image_container').append(
+      $('<div />').css({
+        backgroundImage: "url('" + element.img_url +"')",
+        width: viewportWidth,
+        height: viewportHeight
+      })
+    );
+  });
+}
+
+$('#image_container').css({
+  width: viewportWidth,
+  height: viewportHeight
+});
+
+$.ajax({
+  url: '/get_proxied_json?' + encodedSourceUrls,
+  dataType: 'json',
+  success: function(data){
+    insertImages(data);
+  },
+  complete: function(){
+    startCycling();
+    if (reloadWhenFinished){
+      reloadImages();
     }
-  });
+  }
+});
 
 });
