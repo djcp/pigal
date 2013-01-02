@@ -1,6 +1,10 @@
 body{
   margin: 0px;
 }
+#image_container{
+  background: no-repeat center center fixed;
+  background-image: url('/loading.gif');
+}
 #image_container div{
   background: no-repeat center center fixed;
   -webkit-background-size: cover;
