@@ -22,7 +22,14 @@ function startCycling(){
     fx: transition,
     timeout: timeout,
     speed: transitionSpeed,
-    random: random
+    random: random,
+    before: function(currentSlide, nextSlide, options, forwardFlag){
+      var nextBackground = $(nextSlide).attr('data-background');
+      $(nextSlide).css({backgroundImage: "url('" + nextBackground + "')"});
+
+      var currentBackground = $(currentSlide).attr('data-background');
+      $(currentSlide).css({backgroundImage: "url('" + currentBackground + "')"});
+    }
   });
 }
 
@@ -30,10 +37,9 @@ function insertImages(data){
   $(data).each(function(index,element){
     $('#image_container').append(
       $('<div />').css({
-        backgroundImage: "url('" + element.img_url +"')",
         width: viewportWidth,
         height: viewportHeight
-      })
+      }).attr('data-background', element.img_url)
     );
   });
 }
