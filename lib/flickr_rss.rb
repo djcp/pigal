@@ -1,4 +1,8 @@
 class FlickrRss
+  def self.can_handle?(url)
+    url.match /api\.flickr\.com.+rss/
+  end
+
   def initialize(url)
     @url = url
   end

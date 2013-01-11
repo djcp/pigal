@@ -1,4 +1,8 @@
 class DeviantArtGallery
+  def self.can_handle?(url)
+    url.match /backend\.deviantart.+gallery/
+  end
+
   def initialize(url)
     @url = url
   end

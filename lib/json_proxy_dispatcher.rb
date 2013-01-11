@@ -13,26 +13,30 @@ class JsonProxyDispatcher
   def as_json
     items = []
     @urls.each do|url|
-      strategy = UrlStrategyFactory.strategy(url)
+      strategy = best_strategy_for(url)
       items << strategy.items
     end
     JSON.generate(items.flatten.compact)
   end
 
-  private
+  def best_strategy_for(url)
+    strategy = self.class.strategies.find{|strategy|
+      strategy.can_handle? url
+    } || NullStrategy
+    strategy.new(url)
+  end
 
-  class UrlStrategyFactory
-    def self.strategy(url)
-      if url.match /smugmug\.com.+atom10/
-        SmugMugAtom.new(url)
-      elsif url.match /api\.flickr\.com.+rss/
-        FlickrRss.new(url)
-      elsif url.match /backend\.deviantart.+gallery/
-        DeviantArtGallery.new(url)
-      else
-        NullStrategy.new(url)
-      end
-    end
+  def self.strategies
+    @strategies
+  end
+
+  def self.register_image_source_strategy(klass)
+    @strategies = [] if @strategies.nil?
+    @strategies << klass
   end
 
 end
+
+JsonProxyDispatcher.register_image_source_strategy SmugMugAtom
+JsonProxyDispatcher.register_image_source_strategy DeviantArtGallery
+JsonProxyDispatcher.register_image_source_strategy FlickrRss
