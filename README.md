@@ -16,13 +16,15 @@ and smugmug.
     (crontab -l ; echo "@reboot /home/pi/pigal/bin/pigal start") | crontab -
 * Visit http://<your pi ip address>:9292/
 
+Please check out '''bin/setup.sh''' which should handle the steps above for you.
+
 ## Midori in fullscreen mode
 
   midori -e Fullscreen -a http://localhost:9292/
 
 ## Configuration
 
-pigal logs to syslog. You can edit config.yml to change various 
+pigal logs to syslog. You can edit config.yml to change various options about how the slideshow displays and add new image sources.
 
 ### Smugmug
 

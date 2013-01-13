@@ -1,7 +1,13 @@
+# more transitions here: http://jquery.malsup.com/cycle/browser.html
 transition: scrollLeft
+# Milliseconds for the duration of each slide transition
 transition_speed: 2000
+# Display an image for this long before transitioning to the next.
 timeout: 8000
+# Randomize slide order
 random: true
+# Reload the slideshow after all images have been displayed - we guess 
+# about when to do this based on how many images and transition timing
 reload_when_finished: true
 urls:
 - http://djcp.smugmug.com/hack/feed.mg?Type=gallery&Data=24533581_cCxzNm&format=atom10&ImageCount=200&Paging=0
