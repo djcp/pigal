@@ -1,0 +1,15 @@
+#!/bin/bash
+
+SCRIPT_DIR="$( cd -P "$( /usr/bin/dirname "${BASH_SOURCE[0]}" )" && /bin/pwd )"
+cd $SCRIPT_DIR/..
+
+case $1 in
+  start)
+    /usr/local/bin/rackup -P tmp/pigal.pid config.ru
+    ;;
+  stop)
+    /bin/kill `/bin/cat tmp/pigal.pid` ;;
+  *)
+    echo "usage: pigal {start|stop}" ;;
+esac
+exit 0
