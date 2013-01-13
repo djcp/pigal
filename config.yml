@@ -1,11 +1,12 @@
 transition: scrollLeft
-transition_speed: 1000
-timeout: 4000
+transition_speed: 2000
+timeout: 8000
 random: true
 reload_when_finished: true
 urls:
- - http://djcp.smugmug.com/hack/feed.mg?Type=gallery&Data=24533581_cCxzNm&format=atom10
- - http://api.flickr.com/services/feeds/photos_public.gne?id=52614599@N00&lang=en-us&format=rss_200
- - http://backend.deviantart.com/rss.xml?q=gallery%3Aaoao2%2F9875011&type=deviation
- - http://backend.deviantart.com/rss.xml?q=gallery%3Aaoao2%2F36733838&type=deviation
- - http://slashdot.org
+- http://djcp.smugmug.com/hack/feed.mg?Type=gallery&Data=24533581_cCxzNm&format=atom10&ImageCount=200&Paging=0
+- http://djcp.smugmug.com/hack/feed.mg?Type=gallery&Data=13427864_N238g8&format=atom10&ImageCount=200&Paging=0
+- http://djcp.smugmug.com/hack/feed.mg?Type=gallery&Data=24534365_QChjrD&format=atom10&ImageCount=200&Paging=1
+#- http://api.flickr.com/services/feeds/photos_public.gne?id=52614599@N00&lang=en-us&format=rss_200
+#- http://backend.deviantart.com/rss.xml?q=gallery%3Aaoao2%2F9875011&type=deviation
+#- http://backend.deviantart.com/rss.xml?q=gallery%3Aaoao2%2F36733838&type=deviation
