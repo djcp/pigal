@@ -31,4 +31,6 @@ You can start it manually as well, thusly:
 
 /home/pi/pigal/bin/pigal start & bg
 
+Please be sure to customize your image source URLs in config.yml.
+
 WellHelloThere

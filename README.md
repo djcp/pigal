@@ -1,30 +1,35 @@
 # Pigal
 
-A raspberry pi optimized full-screen gallery program that can talk to flickr
-and smugmug.
+A raspberry pi optimized full-screen gallery program that can talk to flickr,
+smugmug and deviantart (more coming soon!).
 
 ## Installation
 
 * Install raspbian
-* Install necessary packages:
-    sudo aptitude install git ruby1.9.3 build-essential libxml2-dev libxml2
 * Check out pigal into a local repository:
-    git clone git://github.com/djcp/pigal.git /home/pi/pigal/
-* Install the necessary ruby gems:
-    cd /home/pi/pigal/ && sudo bundle
-* Create the cronjob that'll start the pigal server at boot:
-    (crontab -l ; echo "@reboot /home/pi/pigal/bin/pigal start") | crontab -
+
+    ```git clone git://github.com/djcp/pigal.git /home/pi/pigal/```
+
+* Run the setup script which will install the necessary debian packages, ruby
+  gems and ensure the pigal server starts at boot via an @reboot cron job. It's
+  fairly easy to understand so please review it before proceeding.
+
+    ```cd /home/pi/pigal && ./bin/setup.sh```
+
+* Reboot your pi.
 * Visit http://<your pi ip address>:9292/
 
-Please check out '''bin/setup.sh''' which should handle the steps above for you.
-
 ## Midori in fullscreen mode
+
+The default midori browser makes an excellent slideshow viewer if you're using
+your pi to control a display as well.
 
   midori -e Fullscreen -a http://localhost:9292/
 
 ## Configuration
 
-pigal logs to syslog. You can edit config.yml to change various options about how the slideshow displays and add new image sources.
+pigal logs to syslog. You can edit config.yml to change various options about
+how the slideshow displays and add new image sources.
 
 ### Smugmug
 
