@@ -15,7 +15,7 @@ class Pigal < Sinatra::Base
 
   get '/get_proxied_json' do
     content_type :json
-    jpd = JsonProxyDispatcher.new(config['urls'])
+    jpd = JsonProxyDispatcher.new(config['urls'] || [])
     jpd.as_json
   end
 

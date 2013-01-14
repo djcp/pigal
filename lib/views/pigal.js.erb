@@ -11,9 +11,11 @@ var reloadWhenFinished = <%= config['reload_when_finished'] %>;
 function reloadImages(){
   // Guess when we should reload
   var totalSlideTime = (transitionSpeed + timeout) * $('#image_container div').length;
-  setTimeout(function(){
-    window.location.reload();
-  }, totalSlideTime);
+  if(totalSlideTime > 0){
+    setTimeout(function(){
+      window.location.reload();
+    }, totalSlideTime);
+  }
 }
 
 function startCycling(){
