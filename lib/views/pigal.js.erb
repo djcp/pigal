@@ -2,7 +2,6 @@ $(function(){
 
 var viewportHeight = $(window).height();
 var viewportWidth = $(window).width();
-var encodedSourceUrls = '<%= @encoded_source_urls %>';
 var transitionSpeed = <%= config['transition_speed'] %>;
 var transition = '<%= config['transition'] %>';
 var timeout = <%= config['timeout'] %>;
@@ -50,7 +49,7 @@ $('#image_container').css({
 });
 
 $.ajax({
-  url: '/get_proxied_json?' + encodedSourceUrls,
+  url: '/get_proxied_json',
   dataType: 'json',
   success: function(data){
     insertImages(data);
