@@ -12,7 +12,7 @@ then
 fi
 
 echo -e "\033[33mInstalling gems\033[0m"
-cd /home/pi/pigal/ && sudo bundle
+cd /home/pi/pigal/ && sudo gem install bundler && sudo bundle
 
 if ! [[ `crontab -l | grep "bin/pigal start"` ]]
 then
